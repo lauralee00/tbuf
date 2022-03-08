@@ -2,8 +2,6 @@ import typing
 from define_tbuf import *
 
 
-
-
 # the cursor is as far left as possible
 def tbuf_at_left(B: TextBuffer) -> bool:
     # REQUIRES: is_tbuf(B)
