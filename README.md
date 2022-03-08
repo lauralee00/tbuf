@@ -1,6 +1,6 @@
 # text-editor
 
-!Still in the making!
+**!Still in the making!**
 
 Command line Emacs-style text editor in python
 
