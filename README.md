@@ -1,6 +1,6 @@
 # text-editor
 
-**!Still in the making!**
+**PLEASE NOTE: Up and Down is currently not supported. **
 
 Command line Emacs-style text editor in python
 
