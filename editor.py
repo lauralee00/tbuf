@@ -55,3 +55,37 @@ def editor_delete(E: Editor) -> None:
     buf = E
     if is_tbuf(buf) and not tbuf_is_empty(buf) and not buf.cursor.prev == buf.start:
         tbuf_delete(buf)
+
+
+# TODO: implement editor_up() and editor_down()
+# # moves cursor one line above
+# # preserves original column unless new line has fewer columns
+# #   in which case cursor is placed at the rightmost column
+# def editor_up(E: Editor) -> None:
+#     r, c = tbuf_row(B), tbuf_col(B)
+#     if r == 1: #first line
+#         return
+#     while E.buf.cursor.data != "\n":
+#         editor_forward(E)
+#
+#     newC = tbuf_col(B)
+#     for i in range(c-newC):
+#         editor_forward(E)
+#         if E.buf.cursor.data == "\n":
+#             break
+#
+#
+# # moves cursor one line below
+# # preserves original column unless new line has fewer columns
+# #   in which case cursor is placed at the rightmost column
+# def editor_down(E: Editor) -> None:
+#     r, c = tbuf_row(E), tbuf_col(E)
+#     if r == E.row:
+#         return
+#     while E.buf.cursor.data != "\n":
+#         editor_backward(E)
+#
+#     for i in range(c):
+
+
+
