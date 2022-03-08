@@ -1,10 +1,10 @@
 # text-editor
 
-Command line Emacs-style text editor 
+Command line Emacs-style text editor in python
 
 Inspired from school hw
 
-Implemented in python using doubly-linked lists, static typing
+Built from scratch using doubly-linked lists, static typing
 
 clone repo then run:
 
