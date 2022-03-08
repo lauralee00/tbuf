@@ -34,14 +34,11 @@ def tbuf_forward(B: TextBuffer) -> None:
     # REQUIRES: is_tbuf(B) and B.cursor != B.end
     # ENSURES: is_tbuf(B) (esp checking for cursor_in_range(B))
 
-    # this is implemented slightly differently
-    # (as long as is_tbuf, if already at end, do nothing instead of failing precondition)
-    # to strengthen requirement, uncomment else clause
     if not is_tbuf(B): raise ValueError
 
     if B.cursor != B.end:
         B.cursor = B.cursor.next
-    # else: raise ValueError
+    else: raise ValueError
 
 
 # Move the cursor backward, to the left
@@ -52,7 +49,7 @@ def tbuf_backward(B: TextBuffer) -> None:
 
     if B.cursor != B.start.next:
         B.cursor = B.cursor.prev
-    # else: raise ValueError
+    else: raise ValueError
 
 # Insert c to the cursor’s left
 def tbuf_insert(B: TextBuffer, c: str) -> None:
