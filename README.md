@@ -6,7 +6,7 @@ Inspired from school hw
 
 Built from scratch using doubly-linked lists, static typing
 
-clone repo then run:
+Clone repo then run:
 
 ```
 python3 main.py
