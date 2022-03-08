@@ -1,4 +1,4 @@
-import typing
+from typing import *
 
 # class ListNode:
 #     def __init__(self, x):
@@ -7,20 +7,23 @@ import typing
 
 
 class DllNode:
-    def __init__(self, data: str):
-        self.data = data
+    def __init__(self, data: Optional[str]):
+        if data:
+            self.data = data
+        else:
+            self.data = None
         self.next = None
         self.prev = None
 
 
 class TextBuffer:
     def __init__(self):
-        self.start = DllNode()
+        self.start = DllNode(None)
         self.cursor = self.start
-        self.end = DllNode()
+        self.end = DllNode(None)
 
 def is_dll_segment(a: DllNode, b: DllNode) -> bool:
-    if a == b: return False # edge case (size 1)
+    if a == b: return False  # edge case (size 1)
     head, tail = a, b
 
     while head and head != tail:

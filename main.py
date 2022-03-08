@@ -13,15 +13,17 @@ def main():
             print(B.cursor.data, end="")
             tbuf_backward(B)
 
-        print("Bad 1")
+        print("\nBad 1")
     except:
-        print("Good Job 1")
+        print("\nGood Job 1")
 
     try:
         for i in range(7):
             print(E.buf.cursor.data, end="")
-            editor_backward(E)
-        print("Good Job 2")
+            editor_forward(E)
+        print("\nGood Job 2")
     except:
-        print("Bad 2")
+        print("\nBad 2")
 
+if __name__ == "__main__":
+    main()

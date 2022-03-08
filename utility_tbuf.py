@@ -23,7 +23,7 @@ def tbuf_new() -> TextBuffer:
     # REQUIRES: None
     # ENSURES: is_tbuf(\result) && tbuf_empty(\result)
     new = TextBuffer()
-    mid = DllNode()
+    mid = DllNode(None)
     new.start.next = new.end.prev = mid
     mid.prev, mid.next = new.start, new.end
     new.cursor = new.end
