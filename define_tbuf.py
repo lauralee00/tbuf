@@ -13,7 +13,7 @@ class DllNode:
         self.prev = None
 
 
-class TbufHeader:
+class TextBuffer:
     def __init__(self):
         self.start = DllNode()
         self.cursor = self.start
@@ -54,22 +54,34 @@ def is_circular_dll(a: DllNode, b: DllNode) -> bool:
     except:
         return False
 
+# checks if cursor in (head, tail] --------> (assumes is_segment and no cycle)
+def cursor_in_range(tbuf: TextBuffer) -> bool:
+    head, tail, cursor = tbuf.start, tbuf.end, tbuf.cursor
+    while head != tail:
+        head = head.next
+        if head == cursor: return True
+    return False
 
 # a valid text buffer is a non-Null tbuf* with the following properties:
 # - the "next" links proceed from the "start" node to the "end" node
 # - with the cursor node included in the segment from "start" (exclusive) to "end" (inclusive)
 # - "prev" mirrors the "next" links
-def is_tbuf(tbuf: TbufHeader) -> bool:
+def is_tbuf(tbuf: TextBuffer) -> bool:
     head, tail, cursor = tbuf.start, tbuf.end, tbuf.cursor
     if not is_dll_segment(head, tail): return False
     if is_circular_dll(head, tail): return False
+    if not cursor_in_range(tbuf): return False
 
-    # checks if cursor in (head, tail] --------> (assuming is_segment and no cycle)
-    while head != tail:
-        head = head.next
-        if head == cursor: return True
+    return True
 
+def tbuf_is_empty(tbuf: TextBuffer) -> bool:
+    if not is_tbuf(tbuf): raise ValueError
+
+    head, tail, cursor = tbuf.start, tbuf.end, tbuf.cursor
+    if (head.next == tail and tail.prev == head) and (cursor == tail):
+        return True
     return False
+
 
 
 
