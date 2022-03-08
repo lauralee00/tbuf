@@ -1,6 +1,6 @@
 # text-editor
 
-command line Emacs-style text editor 
+Command line Emacs-style text editor 
 
 Inspired from school hw
 
