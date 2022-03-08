@@ -1,8 +1,3 @@
-import sys
-
-input = lambda: sys.stdin.readline().strip()
-read = lambda: map(int, input().split())
-
 from define_tbuf import *
 from utility_tbuf import *
 from editor import *
