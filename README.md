@@ -1,5 +1,7 @@
 # text-editor
 
+!!Still in the making!!
+
 Command line Emacs-style text editor in python
 
 Inspired from school hw
