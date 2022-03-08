@@ -2,7 +2,7 @@
 
 command line Emacs-style text editor 
 
-Inspired from one of the homeworks in CMU122
+Inspired from school hw
 
 Implemented in python using doubly-linked lists, static typing
 
