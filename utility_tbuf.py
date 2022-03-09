@@ -4,13 +4,13 @@ from define_tbuf import *
 
 # the cursor is as far left as possible
 def tbuf_at_left(B: TextBuffer) -> bool:
-    # REQUIRES: is_tbuf(B)
+    assert(is_tbuf(B))
     start, cursor = B.start, B.cursor
     return True if cursor == start.next else False
 
 # the cursor is as far right as possible
 def tbuf_at_right(B: TextBuffer) -> bool:
-    # REQUIRES: is_tbuf(B)
+    assert(is_tbuf(B))
     end, cursor = B.end, B.cursor
     return True if cursor == end else False
 
@@ -25,29 +25,32 @@ def tbuf_new() -> TextBuffer:
     new.start.next = new.end.prev = mid
     mid.prev, mid.next = new.start, new.end
     new.cursor = new.end
+    assert (is_tbuf(new))
+    assert(tbuf_is_empty(new))
     return new
 
 # Move the cursor forward, to the right
 def tbuf_forward(B: TextBuffer) -> None:
     # REQUIRES: is_tbuf(B) and B.cursor != B.end
     # ENSURES: is_tbuf(B) (esp checking for cursor_in_range(B))
-
-    if not is_tbuf(B): raise ValueError
+    if not is_tbuf(B) or tbuf_at_left(B): raise ValueError
 
     if B.cursor != B.end:
         B.cursor = B.cursor.next
     else: raise ValueError
+    assert(is_tbuf(B) and not tbuf_at_right(B))
 
 
 # Move the cursor backward, to the left
 def tbuf_backward(B: TextBuffer) -> None:
     # REQUIRES: is_tbuf(B) and B.cursor != B.start.next
     # ENSURES: is_tbuf(B) (esp checking for cursor_in_range(B))
-    if not is_tbuf(B): raise ValueError
+    if not is_tbuf(B) or tbuf_at_right(B): raise ValueError
 
     if B.cursor != B.start.next:
         B.cursor = B.cursor.prev
     else: raise ValueError
+    assert(is_tbuf(B) and not tbuf_at_left(B))
 
 # Insert c to the cursor’s left
 def tbuf_insert(B: TextBuffer, c: str) -> None:
@@ -61,20 +64,19 @@ def tbuf_insert(B: TextBuffer, c: str) -> None:
 
     cleft.next = cursor.prev = new
     new.prev, new.next = cleft, cursor
+    assert(is_tbuf(B) and not tbuf_at_left(B))
 
 
 # Remove the node to the cursor’s left (should return the deleted char)
 def tbuf_delete(B: TextBuffer) -> str:
     # REQUIRES: is_tbuf(B) && not tbuf_is_empty(B) && tbuf.cursor.prev != tbuf.start
     # ENSURES: is_tbuf(B)
-    if not is_tbuf(B) or tbuf_is_empty(B): raise ValueError
+    if not is_tbuf(B) or tbuf_is_empty(B) or tbuf_at_left(B): raise ValueError
 
     start, end, cursor = B.start, B.end, B.cursor
-    if cursor.prev == start:
-        raise ValueError  # can't delete start
-
     nleft, nright = cursor.prev.prev, cursor
     nleft.next, cursor.prev = cursor, nleft
+    assert(is_tbuf(B))
 
 def tbuf_row(B: TextBuffer) -> int:  # Return the row of the cursor
     # REQUIRES: is_tbuf(B)
