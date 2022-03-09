@@ -36,8 +36,8 @@ def test():
 
     try:
         for i in range(7):
-            print(E.buf.cursor.data, end="")
-            editor_forward(E)
+            print(new.buf.cursor.data, end="")
+            editor_forward(new)
         print("\nGood Job 2")
     except:
         print("\nBad 2")
@@ -97,6 +97,9 @@ def main() -> None:
             editor_insert(B, "\n")
         elif msg == "backspace":
             editor_delete(B)
+        else:
+            for c in msg:
+                editor_insert(B, c)
 
 
 

@@ -23,6 +23,7 @@ class TextBuffer:
         self.end = DllNode(None)
 
 def is_dll_segment(a: DllNode, b: DllNode) -> bool:
+    # if a == null or b == null: return False
     if a == b: return False  # edge case (size 1)
     head, tail = a, b
 
