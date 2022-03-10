@@ -1,6 +1,6 @@
 # text-editor
 
-**PLEASE NOTE: Up and Down is currently not supported.**
+~~**PLEASE NOTE: Up and Down is currently not supported.**~~
 
 
 
